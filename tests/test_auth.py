@@ -1,6 +1,11 @@
-import pytest
+import sys
+from pathlib import Path
 from unittest.mock import MagicMock
-from main import AuthRegister, AuthLogin
+import pytest
+
+sys.path.append(str(Path(__file__).parent.parent))
+
+from main import AuthLogin, AuthRegister
 
 def test_auth_register_data():
     """ทดสอบฟังก์ชัน register_data ว่าดึงค่าจาก UI IDs ได้ถูกต้อง"""
