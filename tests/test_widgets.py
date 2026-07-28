@@ -1,4 +1,9 @@
+import sys
+from pathlib import Path
 import pytest
+
+sys.path.append(str(Path(__file__).parent.parent))
+
 from widgets.roundButton import RoundedButton
 
 def test_rounded_button_collision():
