@@ -1,0 +1,342 @@
+WindowManager:
+    Auth:
+        name: "auth"
+    AuthRegister:
+        name: "auth_register"
+    AuthLogin:
+        name: "auth_login"
+
+<WindowManager>:
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<Auth>:
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    FloatLayout:
+        size: root.width, root.height
+
+        GridLayout:
+            cols: 1
+            size_hint: 0.9, 0.06
+            pos_hint: {'center_x': 0.5, 'center_y': 0.25}
+
+            #put your icon here
+
+            GridLayout:
+                cols: 2
+                spacing: 20
+
+                RoundedButton:
+                    text: "Register"
+                    color: (1, 1, 1, 1) if self.state == 'down' else (0, 0, 0, 1)
+                    background_color: 1, 1, 1, 0
+                    background_normal: ''
+                    on_release:
+                        app.root.current = "auth_register"
+                        root.manager.transition.direction = "left"
+                    canvas.before:
+                        Color:
+                            rgba: (0, 0, 0, 1) if self.state == 'down' else (1, 1, 1, 1)
+                        RoundedRectangle
+                            pos: self.pos
+                            size: self.size
+                            radius: [20]
+                        Color:
+                            rgba: (0, 0, 0, 1) if self.state == 'down' else (0, 0, 0, 1)
+                        SmoothLine:
+                            width: 1.5
+                            rounded_rectangle: (self.x, self.y, self.width, self.height, 60)
+
+                RoundedButton:
+                    text: "Login"
+                    color: 1, 1, 1, 1
+                    background_color: 5/255, 74/255, 11/255, 0
+                    background_normal: ''
+                    on_release:
+                        app.root.current = 'auth_login'
+                        root.manager.transition.direction = "left"
+
+                    canvas.before:
+                        Color:
+                            rgba: (22/255, 122/255, 31/255, 1) if self.state == 'down' else (5/255, 74/255, 11/255, 1)
+                        RoundedRectangle
+                            pos: self.pos
+                            size: self.size
+                            radius: [20]
+                        Color:
+                            rgba: (22/255, 122/255, 31/255, 1) if self.state == 'down' else (5/255, 74/255, 11/255, 1)
+                        SmoothLine:
+                            width: 1.5
+                            rounded_rectangle: (self.x, self.y, self.width, self.height, 60)
+
+<AuthRegister>:
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    FloatLayout:
+        size: root.width, root.height
+
+        BoxLayout:
+            size_hint: 0.09, 0.05
+            pos_hint: {'center_x': 0.1, 'center_y': 0.95}
+            RoundedButton:
+                text: "X"
+                color: 1, 1, 1, 1
+                background_color: 5/255, 74/255, 11/255, 0
+                background_normal: ''
+                on_release:
+                    app.root.current = 'auth'
+                    root.manager.transition.direction = "right"
+
+                canvas.before:
+                    Color:
+                        rgba: (77/255, 77/255, 77/255, 1) if self.state == 'down' else (204/255, 203/255, 202/255, 1)
+                    RoundedRectangle
+                        pos: self.pos
+                        size: self.size
+                        radius: [20]
+                    Color:
+                        rgba: (77/255, 77/255, 77/255, 1) if self.state == 'down' else (204/255, 203/255, 202/255, 1)
+                    SmoothLine:
+                        width: 1.5
+                        rounded_rectangle: (self.x, self.y, self.width, self.height, 60)
+
+        BoxLayout:
+            size_hint: 0.6, 0.2
+            pos_hint: {'center_x': 0.5, 'center_y': 0.875}
+            Label:
+                text: 'Register'
+                font_size: '28sp'
+                color: 0, 0, 0, 1
+
+        GridLayout:
+            cols: 1
+            size_hint: 0.6, 0.3
+            padding: 0, -40
+            pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+
+            Label:
+                text: "Name"
+                color: 0, 0, 0, 1
+
+            TextInput:
+                id: name_input_reg
+                hint_text: "John Doe"
+                multiline: False
+                background_normal: ''
+                background_active: ''
+
+                canvas.after:
+                    Color:
+                        rgba: 222/255, 218/255, 217/255, 1
+                    SmoothLine:
+                        width: 1.2
+                        rounded_rectangle: (self.x, self.y, self.width, self.height, 8)
+
+            Label:
+                text: "E-mail"
+                color: 0, 0, 0, 1
+
+            TextInput:
+                id: email_input_reg
+                hint_text: "Enter your email"
+                multiline: False
+                background_normal: ''
+                background_active: ''
+
+                canvas.after:
+                    Color:
+                        rgba: 222/255, 218/255, 217/255, 1
+                    SmoothLine:
+                        width: 1.2
+                        rounded_rectangle: (self.x, self.y, self.width, self.height, 8)
+
+            Label:
+                text: "Password"
+                color: 0, 0, 0, 1
+
+            TextInput:
+                id: pass_input_reg
+                hint_text: "********"
+                password: True
+                password_mask: '*'
+                multiline: False
+                background_normal: ''
+                background_active: ''
+
+                canvas.after:
+                    Color:
+                        rgba: 222/255, 218/255, 217/255, 1
+                    SmoothLine:
+                        width: 1.2
+                        rounded_rectangle: (self.x, self.y, self.width, self.height, 8)
+
+            Label:
+                text: "Confirm Password"
+                color: 0, 0, 0, 1
+
+            TextInput:
+                id: conpass_input_reg
+                hint_text: "********"
+                password: True
+                password_mask: '*'
+                multiline: False
+                background_normal: ''
+                background_active: ''
+
+                canvas.after:
+                    Color:
+                        rgba: 222/255, 218/255, 217/255, 1
+                    SmoothLine:
+                        width: 1.2
+                        rounded_rectangle: (self.x, self.y, self.width, self.height, 8)
+
+        BoxLayout:
+            size_hint: 0.6, 0.06
+            pos_hint: {'center_x': 0.5, 'center_y': 0.15}
+            RoundedButton:
+                text: "Create Account"
+                color: 1, 1, 1, 1
+                background_color: 5/255, 74/255, 11/255, 0
+                background_normal: ''
+                on_press: root.register_data()
+
+                canvas.before:
+                    Color:
+                        rgba: (22/255, 122/255, 31/255, 1) if self.state == 'down' else (5/255, 74/255, 11/255, 1)
+                    RoundedRectangle
+                        pos: self.pos
+                        size: self.size
+                        radius: [20]
+                    Color:
+                        rgba: (22/255, 122/255, 31/255, 1) if self.state == 'down' else (5/255, 74/255, 11/255, 1)
+                    SmoothLine:
+                        width: 1.5
+                        rounded_rectangle: (self.x, self.y, self.width, self.height, 60)
+
+<AuthLogin>:
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    FloatLayout:
+        size: root.width, root.height
+
+        BoxLayout:
+            size_hint: 0.09, 0.05
+            pos_hint: {'center_x': 0.1, 'center_y': 0.95}
+            RoundedButton:
+                text: "X"
+                color: 1, 1, 1, 1
+                background_color: 5/255, 74/255, 11/255, 0
+                background_normal: ''
+                on_release:
+                    app.root.current = 'auth'
+                    root.manager.transition.direction = "right"
+
+                canvas.before:
+                    Color:
+                        rgba: (77/255, 77/255, 77/255, 1) if self.state == 'down' else (204/255, 203/255, 202/255, 1)
+                    RoundedRectangle
+                        pos: self.pos
+                        size: self.size
+                        radius: [20]
+                    Color:
+                        rgba: (77/255, 77/255, 77/255, 1) if self.state == 'down' else (204/255, 203/255, 202/255, 1)
+                    SmoothLine:
+                        width: 1.5
+                        rounded_rectangle: (self.x, self.y, self.width, self.height, 60)
+
+        BoxLayout:
+            size_hint: 0.6, 0.2
+            pos_hint: {'center_x': 0.5, 'center_y': 0.875}
+            Label:
+                text: 'Login'
+                font_size: '28sp'
+                color: 0, 0, 0, 1
+
+        GridLayout:
+            cols: 1
+            size_hint: 0.6, 0.15
+            padding: 0, -40
+            pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+
+            Label:
+                text: "E-mail"
+                color: 0, 0, 0, 1
+
+            TextInput:
+                id: email_input_login
+                hint_text: "Enter your email"
+                multiline: False
+                background_normal: ''
+                background_active: ''
+
+                canvas.after:
+                    Color:
+                        rgba: 222/255, 218/255, 217/255, 1
+                    SmoothLine:
+                        width: 1.2
+                        rounded_rectangle: (self.x, self.y, self.width, self.height, 8)
+
+
+            Label:
+                text: "Password"
+                color: 0, 0, 0, 1
+
+            TextInput:
+                id: pass_input_login
+                hint_text: "Enter your password"
+                password: True
+                password_mask: '*'
+                multiline: False
+                background_normal: ''
+                background_active: ''
+
+                canvas.after:
+                    Color:
+                        rgba: 222/255, 218/255, 217/255, 1
+                    SmoothLine:
+                        width: 1.2
+                        rounded_rectangle: (self.x, self.y, self.width, self.height, 8)
+
+
+        BoxLayout:
+            size_hint: 0.6, 0.06
+            pos_hint: {'center_x': 0.5, 'center_y': 0.15}
+            RoundedButton:
+                text: "Login"
+                color: 1, 1, 1, 1
+                background_color: 5/255, 74/255, 11/255, 0
+                background_normal: ''
+                on_press: root.login_data()
+
+                canvas.before:
+                    Color:
+                        rgba: (22/255, 122/255, 31/255, 1) if self.state == 'down' else (5/255, 74/255, 11/255, 1)
+                    RoundedRectangle
+                        pos: self.pos
+                        size: self.size
+                        radius: [20]
+                    Color:
+                        rgba: (22/255, 122/255, 31/255, 1) if self.state == 'down' else (5/255, 74/255, 11/255, 1)
+                    SmoothLine:
+                        width: 1.5
+                        rounded_rectangle: (self.x, self.y, self.width, self.height, 60)
